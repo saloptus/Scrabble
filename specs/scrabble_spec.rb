@@ -27,4 +27,6 @@ describe Scrabble::Scoring do
     expect( proc {Scrabble::Scoring.score("A")} ).must_raise ArgumentError
   end
 
+  
+
 end
