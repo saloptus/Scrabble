@@ -1,7 +1,12 @@
 require_relative './Scrabble'
+require_relative './String'
 
 class Scrabble::Scoring
   def self.score(word)
+    raise ArgumentError unless word.class == String
+    raise ArgumentError if word.is_numerical_string?
+    raise ArgumentError if word.length < 2
+
     letters = word.upcase.split(//) # return an array of letters of the word
     #print letters
     letters.each_with_index do |letter, index|
@@ -19,5 +24,7 @@ class Scrabble::Scoring
   end
 
 end
+
+
 
 puts Scrabble::Scoring.score("Quai")

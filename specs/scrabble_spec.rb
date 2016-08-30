@@ -11,20 +11,20 @@ describe Scrabble::Scoring do
     expect( Scrabble::Scoring.score("Quai") ).must_equal(13)
   end
 
-  it '""(empty string) score is nil' do
-    expect( Scrabble::Scoring.score("") ).must_equal(nil)
+  it '""(empty string) raises an ArgumentError' do
+      expect( proc {Scrabble::Scoring.score("")} ).must_raise ArgumentError
   end
 
   it 'A non-string raises an ArgumentError' do
-    expect( Scrabble::Scoring.score(3) ).must_raise(ArgumentError)
+    expect( proc {Scrabble::Scoring.score(3)} ).must_raise ArgumentError
   end
 
   it 'A non-letter string raises an ArgumentError' do
-    expect( Scrabble::Scoring.score("3") ).must_raise(ArgumentError)
+    expect( proc {Scrabble::Scoring.score("3")} ).must_raise ArgumentError
   end
 
   it 'A ONE letter string raises an ArgumentError' do
-    expect( Scrabble::Scoring.score("A") ).must_raise(ArgumentError)
+    expect( proc {Scrabble::Scoring.score("A")} ).must_raise ArgumentError
   end
 
 end
