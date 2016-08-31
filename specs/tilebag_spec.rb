@@ -3,6 +3,10 @@ require_relative '../lib/TileBag'#file name(as same as class name)
 
 describe Scrabble::TileBag do
 
+  it "The .new method initalizes a TileBag object" do
+    expect(Scrabble::TileBag.new.class).must_equal(Scrabble::TileBag)
+  end
+
   it "an initialized tile bag makes a tile bag with 98 tiles" do
     expect(Scrabble::TileBag.new.tiles_remaining).must_equal(98)
   end

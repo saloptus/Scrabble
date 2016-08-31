@@ -49,6 +49,30 @@ describe Scrabble::Player do
     expect(p.highest_word_score).must_equal(120)
   end
 
+  it "Calling player.tiles gives you the current tiles of the player" do
+    p=Scrabble::Player.new("Quai")
+    t=Scrabble::TileBag.new
+    p.draw_tiles(t)
+    expect(p.tiles.class).must_equal(Array)
+    expect(p.tiles.first.class).must_equal(String)
+    expect(p.tiles.first.length).must_equal(1)
+  end
+
+  it "When the game starts, the player should start with 7 tiles" do
+    p=Scrabble::Player.new("Quai")
+    t=Scrabble::TileBag.new
+    p.draw_tiles(t)
+    expect(p.tiles.length).must_equal(7)
+  end
+
+  it "When the player has 3 tiles at hand, then draw tiles gives the player 4 tiles (7 total)" do
+    p=Scrabble::Player.new("Quai")
+    t=Scrabble::TileBag.new
+    p.draw_tiles(t)
+    p.play(p.tiles[0..2].join)
+    p.draw_tiles(t) 
+    expect(p.tiles.length).must_equal(7)
+  end
 end
   # it '""(empty string) raises an ArgumentError' do
   #     expect( proc {Scrabble::Scoring.score("")} ).must_raise ArgumentError
