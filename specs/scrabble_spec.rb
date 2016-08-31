@@ -27,16 +27,27 @@ describe Scrabble::Scoring do
     expect( proc {Scrabble::Scoring.score("A")} ).must_raise ArgumentError
   end
 
+  it 'A 50 point bonus is applied when using all 7 tiles' do
+    expect( Scrabble::Scoring.score("Quaiaaa") ).must_equal(66)
+  end
+
   it 'Of "Maya" and "Quai", "Quai" has the highest score' do
     expect( Scrabble::Scoring.highest_score_from(["Quai","Maya"]) ).must_equal("Quai")
   end
 
-   it 'Of "Maya","Quai", and "Zb", "Zb wins" ' do
+  it 'Of "Maya","Quai", and "Zb", "Zb wins" ' do
     expect( Scrabble::Scoring.highest_score_from(["Quai","Maya", "Zb"]) ).must_equal("Zb")
   end
 
-   it 'Words using all 7 tiles are preferred ' do
+  it 'Words using all 7 tiles are preferred ' do
     expect( Scrabble::Scoring.highest_score_from(["aaaaaad","Maya", "Zzzzzj"]) ).must_equal("aaaaaad")
   end
-
+  
+  it 'Words using all 7 tiles are preferred ' do
+    expect( Scrabble::Scoring.highest_score_from(["Maya", "Zzzzzj","aaaaaad"]) ).must_equal("aaaaaad")
+  end
+  
+  it 'After all rules, if still tie, first word in list wins ' do
+    expect( Scrabble::Scoring.highest_score_from(["aaaaaad","Maya", "Zzzzzj","aaaaaag"]) ).must_equal("aaaaaad")
+  end
 end
