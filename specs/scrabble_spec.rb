@@ -28,10 +28,20 @@ describe Scrabble::Scoring do
   end
 
   it 'Of "Maya" and "Quai", "Quai" has the highest score' do
+    expect( Scrabble::Scoring.score("Quaiaaa") ).must_equal(66)
+  end
+
+  it 'Of "Maya" and "Quai", "Quai" has the highest score' do
     expect( Scrabble::Scoring.highest_score_from(["Quai","Maya"]) ).must_equal("Quai")
   end
 
-   it 'Of "Maya","Quai", and "Zb", "Zb wins" ' do
+  it 'Of "Maya","Quai", and "Zb", "Zb wins" ' do
     expect( Scrabble::Scoring.highest_score_from(["Quai","Maya", "Zb"]) ).must_equal("Zb")
   end
+
+  it 'Of "Maya","Quai", and "Zb", "Zb wins" ' do
+    expect( Scrabble::Scoring.highest_score_from(["aaaaad", "Maya", "Zzzzzj"]) ).must_equal("aaaaad")
+  end
+
+
 end
