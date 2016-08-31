@@ -22,7 +22,7 @@ class Scrabble::Scoring
 #===================VERSION 1:HASH:INCREMENTAL SELECTION============================
 # Incremental selection, always update the lastest correct solution at every iteration
 # Single pass, only iterate once through the data
-  def self.highest_score_from_1(array_of_words)
+  def self.highest_score_from(array_of_words)
     highest_score_and_word = {highest_score: 0,word: ""}
     array_of_words.each do |word|
       score = self.score(word)
@@ -46,7 +46,7 @@ class Scrabble::Scoring
   end
 
 #===================VERSION 2:VARIABLE:INCREMENTAL SELECTION============================
-  def self.highest_score_from_2(array_of_words)
+  def self.highest_score_from_1(array_of_words)
     highest_score = 0
     highest_score_word = ""
 
@@ -78,7 +78,7 @@ class Scrabble::Scoring
 # Multipass & filter selection, handle one requirement at a time
 # filter out incorrect answers and left only the correct ones for next step to handle
 # works like a funnel
-  def self.highest_score_from_3(array_of_words)
+  def self.highest_score_from_2(array_of_words)
     highest_score = 0
     highest_score_words = []
 
