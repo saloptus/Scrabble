@@ -34,4 +34,9 @@ describe Scrabble::Scoring do
    it 'Of "Maya","Quai", and "Zb", "Zb wins" ' do
     expect( Scrabble::Scoring.highest_score_from(["Quai","Maya", "Zb"]) ).must_equal("Zb")
   end
+
+   it 'Words using all 7 tiles are preferred ' do
+    expect( Scrabble::Scoring.highest_score_from(["aaaaaad","Maya", "Zzzzzj"]) ).must_equal("aaaaaad")
+  end
+
 end

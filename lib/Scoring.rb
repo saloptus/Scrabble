@@ -17,6 +17,7 @@ class Scrabble::Scoring
     end
     # add up the total score in the array
     total_score = letters.inject(0) {|total, individual_score| total + individual_score}
+    total_score+=50 if word.length==7
     return total_score
   end
 
@@ -27,10 +28,16 @@ class Scrabble::Scoring
       if score> highest_score_and_word[:highest_score]
         highest_score_and_word[:highest_score]=score
         highest_score_and_word[:word]=word
-      
+
+      #if there is a tie..
       elsif score==highest_score_and_word[:highest_score]
+        #if the word we are checking is shorter than the current word with the high score
+        #then the word we are checking is the new word with the highest score
         if word.length<highest_score_and_word[:word].length
           highest_score_and_word[:word]=word
+        end
+        if word.length==7 and highest_score_and_word[:word].length!= 7
+          highest_score_and_word[:highest_score_and_word]
         end
       end
     end
@@ -72,7 +79,9 @@ class Scrabble::Scoring
   end
 
 end
-Scrabble::Scoring.highest_score_from(["Maya","Quai", "Zb"])
+#puts Scrabble::Scoring.score("aaaaaad") 
+#puts Scrabble::Scoring.score("Zzzzzj") 
+#puts Scrabble::Scoring.highest_score_from(["Maya","Quai", "Zb"])
 
 
 #puts Scrabble::Scoring.score("Quai")
