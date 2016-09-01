@@ -1,12 +1,15 @@
 require_relative './Scrabble'
 require_relative './Scoring'
+require_relative './TileBag'
+
 
 class Scrabble::Player
-  attr_reader :name, :plays, :total_score
+  attr_reader :name, :plays, :total_score, :tiles
   def initialize(name)
     @name = name
     @plays = []
     @total_score = 0
+    @tiles=[]
   end
 
   def play(word)
@@ -38,6 +41,11 @@ class Scrabble::Player
     return Scrabble::Scoring.score(highest_scoring_word)
   end
 
+  def draw_tiles(tilebag)
+    until @tiles.length==7
+      @tiles<<tilebag.draw_tiles(1).first
+    end
+  end
 
 end
 
