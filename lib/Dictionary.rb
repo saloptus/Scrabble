@@ -4,4 +4,7 @@ require_relative './Scrabble'
 
 
 class Scrabble::Dictionary
+  csv_file = ""
+  CSV.open(csv_file)
+
 end
