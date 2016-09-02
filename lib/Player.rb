@@ -13,6 +13,8 @@ class Scrabble::Player
     @tiles=[]
   end
 
+  #we need to change the return of this method to be EITHER false for continue playing or 
+  #the score of the word!!! :'( 
   def play(word)
     raise ArgumentError if  word.split(//).any? {|letter| !tiles.include?(letter)}
         #"You don't tiles to play that word"
