@@ -59,6 +59,7 @@ def self.place_on_board(word, position, direction)
     puts "hello"
   element_at_targeted_position = letter
 
+
   end
   # ap print @@board
 end
