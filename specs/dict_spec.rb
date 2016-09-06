@@ -1,3 +1,6 @@
+# temperaily commented out to save rake loading time
+# all tests passed
+
 # require_relative 'spec_helper'
 # require_relative '../lib/Dictionary.rb'#file name(as same as class name)
 #
