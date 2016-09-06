@@ -34,9 +34,9 @@ class Scrabble::Board
       return true
     end
 
-    # if word_is_valid
-    #   return true
-    # end
+    if word_is_valid
+      return true
+    end
 
   end
 
@@ -183,31 +183,36 @@ class Scrabble::Board
     coloum = start_coloum
 
     length.times do
-      # check the tiles above one by one, return the row of the vertically connected word's first letter(row of first nil - 1)
-      ()
-      if (row - 1) >= 0 && @board[row - 1][coloum] == nil
-        return true
+      # check the tiles above one by one, return the row of the vertically connected word's first letter(row of first nil + 1)
+      until row - i > @board.size && @board[row - i][coloum] == nil
+        i += 1
+        return row + 1
       end
-      # below
-      if (row + 1) < @board.size && @board[row + 1][coloum] != nil
-        return true
-      end
-      # left
-      if (coloum - 1) >= 0 && @board[row][coloum - 1] != nil
-        return true
-      end
-      # right
-      if (coloum + 1) < @board.size && @board[row][coloum + 1] != nil
-        return true
-      end
-      if direction == :horizontal
-        coloum += 1
-      elsif direction == :vertical
-        row += 1
-      end
-    end
-    return false
-  end
+
+  # 
+  #     if (row - 1) >= 0 && @board[row - 1][coloum] == nil
+  #       return true
+  #     end
+  #     # below
+  #     if (row + 1) < @board.size && @board[row + 1][coloum] != nil
+  #       return true
+  #     end
+  #     # left
+  #     if (coloum - 1) >= 0 && @board[row][coloum - 1] != nil
+  #       return true
+  #     end
+  #     # right
+  #     if (coloum + 1) < @board.size && @board[row][coloum + 1] != nil
+  #       return true
+  #     end
+  #     if direction == :horizontal
+  #       coloum += 1
+  #     elsif direction == :vertical
+  #       row += 1
+  #     end
+  #   end
+  #   return false
+  # end
 
 end
 
